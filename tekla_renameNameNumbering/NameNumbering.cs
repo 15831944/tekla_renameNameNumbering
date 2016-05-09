@@ -50,21 +50,6 @@ namespace DMT_renameNameNumbering
             return (changedNames);
         }
 
-        private bool isMainPart(Part currentPart)
-        {
-            Assembly currentAssembly = currentPart.GetAssembly() as Assembly;
-            Part currentMainPart = currentAssembly.GetMainPart() as Part;
-            
-            if (currentMainPart.Identifier.ID == currentPart.Identifier.ID)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         private ModelObjectEnumerator getSelectedObjects()
         {
             var selector = new TSM.UI.ModelObjectSelector();

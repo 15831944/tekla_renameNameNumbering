@@ -42,8 +42,12 @@
             this.rb_vert = new System.Windows.Forms.RadioButton();
             this.lbl_preview2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.rb_part = new System.Windows.Forms.RadioButton();
             this.rb_assembly = new System.Windows.Forms.RadioButton();
+            this.rb_part = new System.Windows.Forms.RadioButton();
+            this.btn_min_2 = new System.Windows.Forms.Button();
+            this.btn_pls_2 = new System.Windows.Forms.Button();
+            this.btn_min_1 = new System.Windows.Forms.Button();
+            this.btn_pls_1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,9 +55,9 @@
             // 
             this.txt_prefix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_prefix.Location = new System.Drawing.Point(101, 40);
+            this.txt_prefix.Location = new System.Drawing.Point(113, 40);
             this.txt_prefix.Name = "txt_prefix";
-            this.txt_prefix.Size = new System.Drawing.Size(114, 20);
+            this.txt_prefix.Size = new System.Drawing.Size(83, 20);
             this.txt_prefix.TabIndex = 0;
             this.txt_prefix.Text = "<prefix>";
             this.txt_prefix.TextChanged += new System.EventHandler(this.txt_prefix_TextChanged);
@@ -62,9 +66,9 @@
             // 
             this.txt_startNr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_startNr.Location = new System.Drawing.Point(101, 66);
+            this.txt_startNr.Location = new System.Drawing.Point(113, 66);
             this.txt_startNr.Name = "txt_startNr";
-            this.txt_startNr.Size = new System.Drawing.Size(114, 20);
+            this.txt_startNr.Size = new System.Drawing.Size(83, 20);
             this.txt_startNr.TabIndex = 1;
             this.txt_startNr.Text = "<start nr>";
             this.txt_startNr.TextChanged += new System.EventHandler(this.txt_startNr_TextChanged);
@@ -73,9 +77,9 @@
             // 
             this.txt_style.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_style.Location = new System.Drawing.Point(101, 92);
+            this.txt_style.Location = new System.Drawing.Point(113, 92);
             this.txt_style.Name = "txt_style";
-            this.txt_style.Size = new System.Drawing.Size(114, 20);
+            this.txt_style.Size = new System.Drawing.Size(83, 20);
             this.txt_style.TabIndex = 2;
             this.txt_style.Text = "<style>";
             this.txt_style.TextChanged += new System.EventHandler(this.txt_style_TextChanged);
@@ -120,7 +124,7 @@
             // 
             this.lbl_preview.AutoSize = true;
             this.lbl_preview.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.lbl_preview.Location = new System.Drawing.Point(98, 119);
+            this.lbl_preview.Location = new System.Drawing.Point(85, 119);
             this.lbl_preview.Name = "lbl_preview";
             this.lbl_preview.Size = new System.Drawing.Size(58, 17);
             this.lbl_preview.TabIndex = 7;
@@ -150,12 +154,10 @@
             // rb_hor
             // 
             this.rb_hor.AutoSize = true;
-            this.rb_hor.Checked = true;
             this.rb_hor.Location = new System.Drawing.Point(12, 12);
             this.rb_hor.Name = "rb_hor";
             this.rb_hor.Size = new System.Drawing.Size(72, 17);
             this.rb_hor.TabIndex = 10;
-            this.rb_hor.TabStop = true;
             this.rb_hor.Text = "Horisontal";
             this.rb_hor.UseVisualStyleBackColor = true;
             this.rb_hor.CheckedChanged += new System.EventHandler(this.rb_hor_CheckedChanged);
@@ -175,7 +177,7 @@
             // 
             this.lbl_preview2.AutoSize = true;
             this.lbl_preview2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.lbl_preview2.Location = new System.Drawing.Point(98, 141);
+            this.lbl_preview2.Location = new System.Drawing.Point(85, 141);
             this.lbl_preview2.Name = "lbl_preview2";
             this.lbl_preview2.Size = new System.Drawing.Size(67, 17);
             this.lbl_preview2.TabIndex = 7;
@@ -193,6 +195,19 @@
             this.panel1.Size = new System.Drawing.Size(243, 29);
             this.panel1.TabIndex = 11;
             // 
+            // rb_assembly
+            // 
+            this.rb_assembly.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.rb_assembly.AutoSize = true;
+            this.rb_assembly.Location = new System.Drawing.Point(105, 5);
+            this.rb_assembly.Name = "rb_assembly";
+            this.rb_assembly.Size = new System.Drawing.Size(69, 17);
+            this.rb_assembly.TabIndex = 1;
+            this.rb_assembly.TabStop = true;
+            this.rb_assembly.Text = "Assembly";
+            this.rb_assembly.UseVisualStyleBackColor = true;
+            this.rb_assembly.CheckedChanged += new System.EventHandler(this.rb_assembly_CheckedChanged);
+            // 
             // rb_part
             // 
             this.rb_part.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -207,23 +222,55 @@
             this.rb_part.UseVisualStyleBackColor = true;
             this.rb_part.CheckedChanged += new System.EventHandler(this.rb_part_CheckedChanged);
             // 
-            // rb_assembly
+            // btn_min_2
             // 
-            this.rb_assembly.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.rb_assembly.AutoSize = true;
-            this.rb_assembly.Location = new System.Drawing.Point(105, 5);
-            this.rb_assembly.Name = "rb_assembly";
-            this.rb_assembly.Size = new System.Drawing.Size(69, 17);
-            this.rb_assembly.TabIndex = 1;
-            this.rb_assembly.TabStop = true;
-            this.rb_assembly.Text = "Assembly";
-            this.rb_assembly.UseVisualStyleBackColor = true;
+            this.btn_min_2.Location = new System.Drawing.Point(86, 90);
+            this.btn_min_2.Name = "btn_min_2";
+            this.btn_min_2.Size = new System.Drawing.Size(23, 23);
+            this.btn_min_2.TabIndex = 12;
+            this.btn_min_2.Text = "-";
+            this.btn_min_2.UseVisualStyleBackColor = true;
+            this.btn_min_2.Click += new System.EventHandler(this.btn_min_2_Click);
+            // 
+            // btn_pls_2
+            // 
+            this.btn_pls_2.Location = new System.Drawing.Point(200, 90);
+            this.btn_pls_2.Name = "btn_pls_2";
+            this.btn_pls_2.Size = new System.Drawing.Size(23, 23);
+            this.btn_pls_2.TabIndex = 13;
+            this.btn_pls_2.Text = "+";
+            this.btn_pls_2.UseVisualStyleBackColor = true;
+            this.btn_pls_2.Click += new System.EventHandler(this.btn_pls_2_Click);
+            // 
+            // btn_min_1
+            // 
+            this.btn_min_1.Location = new System.Drawing.Point(86, 38);
+            this.btn_min_1.Name = "btn_min_1";
+            this.btn_min_1.Size = new System.Drawing.Size(23, 23);
+            this.btn_min_1.TabIndex = 12;
+            this.btn_min_1.Text = "-";
+            this.btn_min_1.UseVisualStyleBackColor = true;
+            this.btn_min_1.Click += new System.EventHandler(this.btn_min_1_Click);
+            // 
+            // btn_pls_1
+            // 
+            this.btn_pls_1.Location = new System.Drawing.Point(200, 38);
+            this.btn_pls_1.Name = "btn_pls_1";
+            this.btn_pls_1.Size = new System.Drawing.Size(23, 23);
+            this.btn_pls_1.TabIndex = 13;
+            this.btn_pls_1.Text = "+";
+            this.btn_pls_1.UseVisualStyleBackColor = true;
+            this.btn_pls_1.Click += new System.EventHandler(this.btn_pls_1_Click);
             // 
             // ftm_customName
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(227, 275);
+            this.Controls.Add(this.btn_pls_1);
+            this.Controls.Add(this.btn_pls_2);
+            this.Controls.Add(this.btn_min_1);
+            this.Controls.Add(this.btn_min_2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.rb_vert);
             this.Controls.Add(this.rb_hor);
@@ -270,6 +317,10 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RadioButton rb_assembly;
         private System.Windows.Forms.RadioButton rb_part;
+        private System.Windows.Forms.Button btn_min_2;
+        private System.Windows.Forms.Button btn_pls_2;
+        private System.Windows.Forms.Button btn_min_1;
+        private System.Windows.Forms.Button btn_pls_1;
     }
 }
 
