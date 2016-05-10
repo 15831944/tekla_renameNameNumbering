@@ -154,56 +154,40 @@ namespace DMT_renameNameNumbering
 
         private void btn_min_1_Click(object sender, EventArgs e)
         {
-            string newSuperString = _userPrefix;
-            string resultString = "";
-            bool canStop = false;
-            ArrayList rewriteStringAtIndex = new ArrayList();
-            for (int i = _userPrefix.Length -1; i > 0; i--)
-            {
-                if (Char.IsDigit(_userPrefix[i]))
-                {
-                    resultString = _userPrefix[i] + resultString;
-                    canStop = true;
-                    int coolValue = i;
-                    rewriteStringAtIndex.Insert(0, coolValue);
-                }
-                else
-                {
-                    if (canStop) break;
-                }
-            }
-
-            if (resultString.Length > 0)
-            {
-                int resultNumber = Int32.Parse(resultString);
-                resultNumber--;
-                if (resultNumber < 1) resultNumber = 1;
-
-                int lenResult = resultString.Length;
-
-                string newString = resultNumber.ToString();
-
-                var aStringBuilder = new StringBuilder(newSuperString);
-                aStringBuilder.Remove((int)rewriteStringAtIndex[0], rewriteStringAtIndex.Count);
-                aStringBuilder.Insert((int)rewriteStringAtIndex[0], newString);
-                newSuperString = aStringBuilder.ToString();
-            }
-
-            txt_prefix.Text = newSuperString;
+            string result = superStringBuilder(_userPrefix, "minus", false);
+            txt_prefix.Text = result;
         }
 
         private void btn_pls_1_Click(object sender, EventArgs e)
         {
-            string newSuperString = _userPrefix;
+            string result = superStringBuilder(_userPrefix, "plus", false);
+            txt_prefix.Text = result;
+        }
+
+        private void btn_min_2_Click(object sender, EventArgs e)
+        {
+            string result = superStringBuilder(_userSuffix, "minus", true);
+            txt_style.Text = result;
+        }
+
+        private void btn_pls_2_Click(object sender, EventArgs e)
+        {
+            string result = superStringBuilder(_userSuffix, "plus", true);
+            txt_style.Text = result;
+        }
+
+        public static string superStringBuilder(string start, string equation, bool zeroes)
+        {
+            string newSuperString = start;
             string resultString = "";
 
             bool canStop = false;
             ArrayList rewriteStringAtIndex = new ArrayList();
-            for (int i = _userPrefix.Length - 1; i > 0; i--)
+            for (int i = start.Length - 1; i >= 0; i--)
             {
-                if (Char.IsDigit(_userPrefix[i]))
+                if (Char.IsDigit(start[i]))
                 {
-                    resultString = _userPrefix[i] + resultString;
+                    resultString = start[i] + resultString;
                     canStop = true;
                     int coolValue = i;
                     rewriteStringAtIndex.Insert(0, coolValue);
@@ -217,11 +201,23 @@ namespace DMT_renameNameNumbering
             if (resultString.Length > 0)
             {
                 int resultNumber = Int32.Parse(resultString);
-                resultNumber++;
+                if (equation == "plus")
+                {
+                    resultNumber++;
+                }
+                else
+                {
+                    resultNumber--;
+                    if (resultNumber < 0) resultNumber = 0;
+                }
 
-                int lenResult = resultString.Length;
-
-                string newString = resultNumber.ToString();
+                string nullz = "";
+                if (zeroes)
+                {
+                    int lenResult = resultString.Length;
+                    for (int i = 0; i < lenResult; i++) nullz += "0";
+                }
+                string newString = resultNumber.ToString(nullz);
 
                 var aStringBuilder = new StringBuilder(newSuperString);
                 aStringBuilder.Remove((int)rewriteStringAtIndex[0], rewriteStringAtIndex.Count);
@@ -229,48 +225,7 @@ namespace DMT_renameNameNumbering
                 newSuperString = aStringBuilder.ToString();
             }
 
-            txt_prefix.Text = newSuperString;
-        }
-
-        private void btn_min_2_Click(object sender, EventArgs e)
-        {
-            string resultString = Regex.Match(_userSuffix, @"\d+").Value;
-
-            int resultNumber = Int32.Parse(resultString);
-            resultNumber--;
-            if (resultNumber < 1) resultNumber = 1;
-
-            int lenResult = resultString.Length;
-            string nullz = "";
-            for (int i = 0; i < lenResult; i++) nullz += "0";
-            
-            string newString = resultNumber.ToString(nullz);
-            if (_userSuffix[0] == '-')
-            {
-                newString = "-" + newString;
-            }
-
-            txt_style.Text = newString;
-        }
-
-        private void btn_pls_2_Click(object sender, EventArgs e)
-        {
-            string resultString = Regex.Match(_userSuffix, @"\d+").Value;
-
-            int resultNumber = Int32.Parse(resultString);
-            resultNumber++;
-
-            int lenResult = resultString.Length;
-            string nullz = "";
-            for (int i = 0; i < lenResult; i++) nullz += "0";
-
-            string newString = resultNumber.ToString(nullz);
-            if (_userSuffix[0] == '-')
-            {
-                newString = "-" + newString;
-            }
-
-            txt_style.Text = newString;
+            return newSuperString;
         }
     }
 }
